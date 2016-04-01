@@ -54,10 +54,16 @@ class CheckCommand extends Command implements ContainerAwareInterface {
         $checkerChain = $this->container->get('wssc.checker_chain');
         $checkerChain->processChecks($url);
 
+        $translator = $this->container->get('translator');
+
+
         foreach ($checkerChain->getResults() as $check => $result) {
             $color = $result === true ? 'info' : 'error';
-            $message = $result === true ? 'OK' : 'KO';
-            $output->writeln(sprintf('<comment>%1$s</comment> : <%2$s>%3$s</%2$s>', $check, $color, $message));
+            $message = $result === true ? $translator->trans('checker.result.success') : $translator->trans('checker.result.fail');
+            $output->writeln(sprintf(
+                '<comment>%1$s</comment> : <%2$s>%3$s</%2$s>',
+                $translator->trans('checker.name.'.$check), $color, $message
+            ));
         }
     }
 
