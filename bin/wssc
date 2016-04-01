@@ -9,12 +9,7 @@ use Pitchart\Wssc\DependencyInjection\CheckerCompilerPass;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\MessageSelector;
-use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationFileLoader;
 
 // Building DI container
 $container = new ContainerBuilder();
@@ -23,17 +18,8 @@ $loader->load('services.yml');
 
 $locale = \Locale::getDefault();
 $container->setParameter('locale', $locale);
+$container->setParameter('root_dir', __DIR__.'/');
 
-// Building translator
-$translator = new Translator($locale, new MessageSelector());
-$translator->addLoader('yaml', new TranslationFileLoader());
-$translator->addResource('yaml', __DIR__ . '/../src/Pitchart/Wssc/Resources/translations/messages.fr.yml', 'fr_FR');
-
-// Adding the translator to the service container
-$translatorDefinition = new Definition();
-$translatorDefinition->setSynthetic(true);
-$container->setDefinition('translator', $translatorDefinition);
-$container->set('translator', $translator);
 
 $container->addCompilerPass(new CheckerCompilerPass());
 
