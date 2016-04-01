@@ -22,4 +22,12 @@ class Header {
     public function __toString() {
         return sprintf('%s: %s', $this->name, $this->value);
     }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getValue() {
+        return $this->value;
+    }
 }

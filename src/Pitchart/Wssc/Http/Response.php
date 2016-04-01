@@ -18,7 +18,7 @@ class Response {
         $this->version = $version;
         $this->statusCode = $statusCode;
         $this->$statusText = $statusText;
-        $this->headers = $headers;
+        $this->headers = $this->parseHeaders($headers);
         $this->content = $content;
     }
 
@@ -54,7 +54,30 @@ class Response {
         return $this->content;
     }
 
-    public function getHeader($name) {
+    public function hasHeader($name) {
+        return array_key_exists($name, $this->headers);
+    }
 
+    public function getHeader($name) {
+        if ($this->hasHeader($name)) {
+            return $this->headers[$name];
+        }
+        return null;
+    }
+
+    private function parseHeaders(array $headers) {
+        $return = [];
+        foreach ($headers as $header) {
+            $return = array_merge($return, $this->parseHeader($header));
+        }
+        return $return;
+    }
+
+    private function parseHeader($header) {
+        if (!($header instanceOf Header)) {
+            $header = Header::fromPlainText($header);
+        }
+
+        return array($header->getName() => $header);
     }
 }

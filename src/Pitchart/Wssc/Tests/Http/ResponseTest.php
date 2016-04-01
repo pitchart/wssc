@@ -13,7 +13,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
             'Date: Fri, 31 Dec 1999 23:59:59 GMT',
             'Server: Apache/0.8.4',
             'Content-Type: text/html',
-            'Content-Length: 59',
+            'Content-Length: 42',
             'Expires: Sat, 01 Jan 2000 00:59:59 GMT',
             'Last-modified: Fri, 09 Aug 1996 14:21:40 GMT',
         ];
@@ -41,12 +41,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('200', $response->getCode());
         $this->assertEquals('HTTP/1.0', $response->getVersion());
         $this->assertEquals([
-            new Header('Date', 'Fri, 31 Dec 1999 23:59:59 GMT'),
-            new Header('Server', 'Apache/0.8.4'),
-            new Header('Content-Type', 'text/html'),
-            new Header('Content-Length', '59'),
-            new Header('Expires', 'Sat, 01 Jan 2000 00:59:59 GMT'),
-            new Header('Last-modified', 'Fri, 09 Aug 1996 14:21:40 GMT'),
+            'Date' => new Header('Date', 'Fri, 31 Dec 1999 23:59:59 GMT'),
+            'Server' => new Header('Server', 'Apache/0.8.4'),
+            'Content-Type' => new Header('Content-Type', 'text/html'),
+            'Content-Length' => new Header('Content-Length', '42'),
+            'Expires' => new Header('Expires', 'Sat, 01 Jan 2000 00:59:59 GMT'),
+            'Last-modified' => new Header('Last-modified', 'Fri, 09 Aug 1996 14:21:40 GMT'),
         ], $response->getHeaders());
         $this->assertEquals('<TITLE>Exemple</TITLE>
 <P>Lorem ipsum.</P>
@@ -63,7 +63,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 Date: Fri, 31 Dec 1999 23:59:59 GMT
 Server: Apache/0.8.4
 Content-Type: text/html
-Content-Length: 59
+Content-Length: 42
 Expires: Sat, 01 Jan 2000 00:59:59 GMT
 Last-modified: Fri, 09 Aug 1996 14:21:40 GMT
 
