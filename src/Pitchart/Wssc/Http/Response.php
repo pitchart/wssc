@@ -33,6 +33,7 @@ class Response {
 
         $separator = array_search('', $response);
         $headers = array_slice($response, 0, $separator);
+        $headers = array_map(function($item) { return  Header::fromPlainText($item);}, $headers);
         $content = array_slice($response, $separator+1);
         return new self($matches['version'], $matches['code'], $matches['text'], $headers, implode(chr(10), $content));
     }

@@ -3,6 +3,7 @@
 namespace Pitchart\Wssc\Tests\Http;
 
 use Pitchart\Wssc\Http\Response;
+use Pitchart\Wssc\Http\Header;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,12 +41,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('200', $response->getCode());
         $this->assertEquals('HTTP/1.0', $response->getVersion());
         $this->assertEquals([
-            'Date: Fri, 31 Dec 1999 23:59:59 GMT',
-            'Server: Apache/0.8.4',
-            'Content-Type: text/html',
-            'Content-Length: 59',
-            'Expires: Sat, 01 Jan 2000 00:59:59 GMT',
-            'Last-modified: Fri, 09 Aug 1996 14:21:40 GMT',
+            new Header('Date', 'Fri, 31 Dec 1999 23:59:59 GMT'),
+            new Header('Server', 'Apache/0.8.4'),
+            new Header('Content-Type', 'text/html'),
+            new Header('Content-Length', '59'),
+            new Header('Expires', 'Sat, 01 Jan 2000 00:59:59 GMT'),
+            new Header('Last-modified', 'Fri, 09 Aug 1996 14:21:40 GMT'),
         ], $response->getHeaders());
         $this->assertEquals('<TITLE>Exemple</TITLE>
 <P>Lorem ipsum.</P>
