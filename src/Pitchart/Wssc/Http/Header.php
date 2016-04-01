@@ -15,8 +15,8 @@ class Header {
 
     public function fromPlainText($header) {
         $header = explode(':', $header);
-        $header = array_map('trim', $header);
-        return new self($header[0], $header[1]);
+        $name = array_shift($header);
+        return new self(trim($name), trim(implode(':', $header)));
     }
 
     public function __toString() {

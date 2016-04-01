@@ -17,11 +17,24 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Header::class, $header);
     }
 
-    public function testCanBeConvertedAsString() {
-        $header = new Header('Content-Type', 'text/html');
-        $this->assertEquals('Content-Type: text/html', (string) $header);
+    /**
+     * @dataProvider headerLinesProvider
+     */
+    public function testCanBeConvertedAsString($headerName, $headerValue, $headerLine) {
+        $header = new Header($headerName, $headerValue);
+        $this->assertEquals($headerLine, (string) $header);
 
-        $header = Header::fromPlainText('Content-Type: text/html');
-        $this->assertEquals('Content-Type: text/html', (string) $header);
+        $header = Header::fromPlainText($headerLine);
+        $this->assertEquals($headerLine, (string) $header);
+    }
+
+    /**
+     * Fourni différent types d'entêtes HTTP
+     */
+    public function headerLinesProvider() {
+        return array(
+            'Simple header' => array('Content-Type', 'text/html', 'Content-Type: text/html'),
+            'Header containing date' => array('Last-modified', 'Fri, 09 Aug 1996 14:21:40 GMT', 'Last-modified: Fri, 09 Aug 1996 14:21:40 GMT'),
+        );
     }
 }
