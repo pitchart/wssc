@@ -1,2 +1,4 @@
 vendor/
 wssc.phar
+box.phar
+build/
