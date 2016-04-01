@@ -1,0 +1,23 @@
+{
+    "chmod": "0755",
+    "compression": "GZ",
+    "directories" : [
+        "config"
+    ],
+    "finder": [
+        {
+            "name": "*",
+            "exclude": ["Tests"],
+            "in": "src"
+        },
+        {
+            "name": "*.php",
+            "exclude": ["Tests", "Test", "tests", "test"],
+            "in": "vendor"
+        }
+    ],
+    "git-version": "package_version",
+    "main": "bin/wssc",
+    "output": "wssc.phar",
+    "stub": true
+}
