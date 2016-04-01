@@ -25,6 +25,6 @@ $container->addCompilerPass(new CheckerCompilerPass());
 
 $container->compile();
 
-$application = (new Application('Web Server Security Checker', '0.1-dev'))->setContainer($container);
+$application = (new Application('Web Server Security Checker', '@package_version@'))->setContainer($container);
 $application->add(new Command\CheckCommand());
 $application->run();
