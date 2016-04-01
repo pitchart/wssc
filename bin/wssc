@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Pitchart\Wssc\Command;
+use Pitchart\Wssc\Application;
+use Pitchart\Wssc\DependencyInjection\CheckerCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+// Building DI container
+$container = new ContainerBuilder();
+$loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../config/'));
+$loader->load('services.yml');
+
+$container->addCompilerPass(new CheckerCompilerPass());
+
+$container->compile();
+
+$application = (new Application('Web Server Security Checker', '0.1-dev'))->setContainer($container);
+$application->add(new Command\CheckCommand());
+$application->run();

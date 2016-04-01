@@ -1,6 +1,6 @@
 <?php
 
-namespace Pitchart\Typo3Installer;
+namespace Pitchart\Wssc;
 
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\Console\Input\InputInterface;

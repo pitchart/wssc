@@ -1,0 +1,27 @@
+services:
+    wssc.checker_chain:
+        class: Pitchart\Wssc\Checker\CheckerChain
+    wssc.checker.https_status:
+        class: Pitchart\Wssc\Checker\HttpsStatusChecker
+        tags:
+            - { name: wssc.checker.curl, type: https, alias: https_status }
+    wssc.checker.http_status:
+        class: Pitchart\Wssc\Checker\HttpStatusChecker
+        tags:
+            - { name: wssc.checker.curl, type: http, alias: http_status }
+    wssc.checker.hsts:
+        class: Pitchart\Wssc\Checker\HstsChecker
+        tags:
+            - { name: wssc.checker.curl, type: https, alias: hsts }
+    wssc.checker.content_sniffer:
+        class: Pitchart\Wssc\Checker\ContentSnifferChecker
+        tags:
+            - { name: wssc.checker.curl, type: https, alias: content_sniffer }
+    wssc.checker.cookie:
+        class: Pitchart\Wssc\Checker\CookieChecker
+        tags:
+            - { name: wssc.checker.curl, type: https, alias: cookie }
+    wssc.checker.frame_embed:
+        class: Pitchart\Wssc\Checker\FrameEmbedChecker
+        tags:
+            - { name: wssc.checker.curl, type: https, alias: frame_embed }

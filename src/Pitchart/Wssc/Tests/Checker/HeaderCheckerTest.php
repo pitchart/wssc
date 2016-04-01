@@ -41,6 +41,7 @@ Last-modified: Fri, 09 Aug 1996 14:21:40 GMT
 X-Frame-Options: SAMEORIGIN
 X-Content-Type-Options: nosniff
 Set-Cookie: ****;Path=/;Expires=Fri, 16-Mar-2018 19:18:51 GMT;Secure;HttpOnly;Priority=HIGH
+Strict-Transport-Security: max-age=63072000; includeSubdomains;
 
 <TITLE>Exemple</TITLE>
 <P>Lorem ipsum.</P>
@@ -54,6 +55,7 @@ Expires: Sat, 01 Jan 2000 00:59:59 GMT
 Last-modified: Fri, 09 Aug 1996 14:21:40 GMT
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=63072000; includeSubdomains;
 
 <TITLE>Exemple</TITLE>
 <P>Lorem ipsum.</P>
