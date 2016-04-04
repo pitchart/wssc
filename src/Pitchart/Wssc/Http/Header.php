@@ -13,7 +13,7 @@ class Header {
         $this->value = $value;
     }
 
-    public function fromPlainText($header) {
+    public static function fromPlainText($header) {
         $header = explode(':', $header);
         $name = array_shift($header);
         return new self(trim($name), trim(implode(':', $header)));
