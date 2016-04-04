@@ -37,6 +37,10 @@ class CheckerChain {
         $curl->get($this->buildUrl($urlParts));
         $httpResponse = Response::fromPlainText(implode(chr(10), $curl->response_headers).chr(10).chr(10));
 
+        /**
+         * @var string $alias
+         * @var Checker $check
+         */
         foreach ($this->curlChecks['http'] as $alias => $check) {
             $this->results[$alias] = $check->check($httpResponse);
         }
@@ -46,7 +50,11 @@ class CheckerChain {
     }
 
     private function buildUrl(array $urlParts) {
-        return sprintf('%s://%s%s', $urlParts['scheme'], $urlParts['host'], isset($urlParts['path']) ? $urlParts['path'] : '/');
+        $auth = '';
+        if (isset($urlParts['user']) && isset($urlParts['pass'])) {
+            $auth = $urlParts['user'].':'.$urlParts['pass'].'@';
+        }
+        return sprintf('%s://%s%s%s', $urlParts['scheme'], $auth, $urlParts['host'], isset($urlParts['path']) ? $urlParts['path'] : '/');
     }
 
 
