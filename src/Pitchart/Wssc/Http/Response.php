@@ -4,14 +4,29 @@ namespace Pitchart\Wssc\Http;
 
 class Response {
 
+    /**
+     * @var string
+     */
     private $version;
 
+    /**
+     * @var integer
+     */
     private $statusCode;
 
+    /**
+     * @var string
+     */
     private $statusText;
 
+    /**
+     * @var array
+     */
     private $headers;
 
+    /**
+     * @var string
+     */
     private $content;
 
     public function __construct($version, $statusCode, $statusText, $headers, $content) {
@@ -38,26 +53,46 @@ class Response {
         return new self($matches['version'], $matches['code'], $matches['text'], $headers, implode(chr(10), $content));
     }
 
+    /**
+     * @return string
+     */
     public function getVersion() {
         return $this->version;
     }
 
+    /**
+     * @return int
+     */
     public function getCode() {
         return $this->statusCode;
     }
 
+    /**
+     * @return array
+     */
     public function getHeaders() {
         return $this->headers;
     }
 
+    /**
+     * @return string
+     */
     public function getContent() {
         return $this->content;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public function hasHeader($name) {
         return array_key_exists($name, $this->headers);
     }
 
+    /**
+     * @param $name
+     * @return Header
+     */
     public function getHeader($name) {
         if ($this->hasHeader($name)) {
             return $this->headers[$name];
@@ -65,6 +100,10 @@ class Response {
         return null;
     }
 
+    /**
+     * @param array $headers
+     * @return array
+     */
     private function parseHeaders(array $headers) {
         $return = [];
         foreach ($headers as $header) {
@@ -73,6 +112,10 @@ class Response {
         return $return;
     }
 
+    /**
+     * @param $header
+     * @return array
+     */
     private function parseHeader($header) {
         if (!($header instanceOf Header)) {
             $header = Header::fromPlainText($header);
