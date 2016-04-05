@@ -45,3 +45,9 @@ clean:
 	rm -rf vendor
 
 .PHONY: clean
+
+phpcbf:
+	vendor/bin/phpcbf --standard=PSR2 --extensions=php src/
+
+.PHONY: phpbcf
+
