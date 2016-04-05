@@ -13,7 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @package Pitchart\Typo3Installer
  * @author Julien VITTE <vitte.julien@gmail.com>
  */
-class Application extends ConsoleApplication implements ContainerAwareInterface {
+class Application extends ConsoleApplication implements ContainerAwareInterface
+{
 
     protected $container;
 

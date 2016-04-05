@@ -8,7 +8,8 @@ use Pitchart\Wssc\Http\Header;
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
     
-    public function testCanBeInstanciated() {
+    public function testCanBeInstanciated()
+    {
         $headers = [
             'Date: Fri, 31 Dec 1999 23:59:59 GMT',
             'Server: Apache/0.8.4',
@@ -28,7 +29,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider plainTextResponseProvider
      */
-    public function testCanBeCreateByPlainTextResponse($plainTextResponse) {
+    public function testCanBeCreateByPlainTextResponse($plainTextResponse)
+    {
         $response = Response::fromPlainText($plainTextResponse);
         $this->assertInstanceOf(Response::class, $response);
     }
@@ -36,7 +38,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider plainTextResponseProvider
      */
-    public function testIsValidWhenCreatedByPlainTextResponse($plainTextResponse) {
+    public function testIsValidWhenCreatedByPlainTextResponse($plainTextResponse)
+    {
         $response = Response::fromPlainText($plainTextResponse);
         $this->assertEquals('200', $response->getCode());
         $this->assertEquals('HTTP/1.0', $response->getVersion());
@@ -56,10 +59,11 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     /**
      * Provides a plaint text HTTP response
      */
-    public function plainTextResponseProvider() {
+    public function plainTextResponseProvider()
+    {
         return array(
             array(
-'HTTP/1.0 200 OK
+        'HTTP/1.0 200 OK
 Date: Fri, 31 Dec 1999 23:59:59 GMT
 Server: Apache/0.8.4
 Content-Type: text/html
@@ -72,5 +76,4 @@ Last-modified: Fri, 09 Aug 1996 14:21:40 GMT
 '           )
         );
     }
-
 }

@@ -10,7 +10,8 @@ class CookieChecker extends HeaderChecker
 
     protected $matchingPattern = '/(Secure|HttpOnly)+(.*)(Secure|HttpOnly)+/i';
 
-    public function check(Response $response) {
+    public function check(Response $response)
+    {
         return parent::check($response)
             || !$response->hasHeader($this->headerName)
         ;

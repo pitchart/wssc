@@ -10,7 +10,8 @@ abstract class HeaderCheckerTest extends \PHPUnit_Framework_TestCase
 {
     
 
-    public function testCanBeInstanciated() {
+    public function testCanBeInstanciated()
+    {
         $this->assertInstanceOf(Checker::class, $this->checker);
         $this->assertInstanceOf(HeaderChecker::class, $this->checker);
     }
@@ -18,18 +19,21 @@ abstract class HeaderCheckerTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider validResponseProvider
      */
-    public function testReturnsTrueForValidResponses($response) {
+    public function testReturnsTrueForValidResponses($response)
+    {
         $this->assertTrue($this->checker->check($response));
     }
 
     /**
      * @dataProvider invalidResponseProvider
      */
-    public function testReturnsFalseForInvalidResponses($response) {
+    public function testReturnsFalseForInvalidResponses($response)
+    {
         $this->assertFalse($this->checker->check($response));
     }
 
-    public function validResponseProvider() {
+    public function validResponseProvider()
+    {
         return array(
             array(Response::fromPlainText('HTTP/1.0 200 OK
 Date: Fri, 31 Dec 1999 23:59:59 GMT
@@ -63,7 +67,8 @@ Strict-Transport-Security: max-age=63072000; includeSubdomains;
         );
     }
 
-    public function invalidResponseProvider() {
+    public function invalidResponseProvider()
+    {
         return array(
             'Security headers not defined' => array(Response::fromPlainText('HTTP/1.0 200 OK
 Date: Fri, 31 Dec 1999 23:59:59 GMT
@@ -108,4 +113,3 @@ Set-Cookie: ****;Path=/;Expires=Fri, 16-Mar-2018 19:18:51 GMT;HttpOnly;Priority=
         );
     }
 }
-

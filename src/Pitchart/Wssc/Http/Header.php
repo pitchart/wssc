@@ -2,32 +2,38 @@
 
 namespace Pitchart\Wssc\Http;
 
-class Header {
+class Header
+{
 
     private $name;
 
     private $value;
 
-    public function __construct($name, $value) {
+    public function __construct($name, $value)
+    {
         $this->name = $name;
         $this->value = $value;
     }
 
-    public static function fromPlainText($header) {
+    public static function fromPlainText($header)
+    {
         $header = explode(':', $header);
         $name = array_shift($header);
         return new self(trim($name), trim(implode(':', $header)));
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return sprintf('%s: %s', $this->name, $this->value);
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
 }

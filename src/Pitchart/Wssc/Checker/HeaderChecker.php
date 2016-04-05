@@ -4,7 +4,8 @@ namespace Pitchart\Wssc\Checker;
 
 use Pitchart\Wssc\Http\Response;
 
-abstract class HeaderChecker implements Checker {
+abstract class HeaderChecker implements Checker
+{
 
     /**
      * The header to check
@@ -21,7 +22,8 @@ abstract class HeaderChecker implements Checker {
     /**
      * @inheritedDoc
      */
-    public function check(Response $response) {
+    public function check(Response $response)
+    {
         return $response->hasHeader($this->headerName)
             && preg_match($this->matchingPattern, $response->getHeader($this->headerName)->getValue());
     }

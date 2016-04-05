@@ -7,12 +7,14 @@ use Pitchart\Wssc\Http\Header;
 class HeaderTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testCanBeInstantiated() {
+    public function testCanBeInstantiated()
+    {
         $header = new Header('Content-Type', 'text/html');
         $this->assertInstanceOf(Header::class, $header);
     }
 
-    public function testCanBeCreatedFromPlainText() {
+    public function testCanBeCreatedFromPlainText()
+    {
         $header = Header::fromPlainText('Content-Type: text/html');
         $this->assertInstanceOf(Header::class, $header);
     }
@@ -20,7 +22,8 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider headerLinesProvider
      */
-    public function testCanBeConvertedAsString($headerName, $headerValue, $headerLine) {
+    public function testCanBeConvertedAsString($headerName, $headerValue, $headerLine)
+    {
         $header = new Header($headerName, $headerValue);
         $this->assertEquals($headerLine, (string) $header);
 
@@ -31,7 +34,8 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
     /**
      * Fourni différent types d'entêtes HTTP
      */
-    public function headerLinesProvider() {
+    public function headerLinesProvider()
+    {
         return array(
             'Simple header' => array('Content-Type', 'text/html', 'Content-Type: text/html'),
             'Header containing date' => array('Last-modified', 'Fri, 09 Aug 1996 14:21:40 GMT', 'Last-modified: Fri, 09 Aug 1996 14:21:40 GMT'),

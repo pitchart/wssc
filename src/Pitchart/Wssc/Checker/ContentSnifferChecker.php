@@ -2,7 +2,8 @@
 
 namespace Pitchart\Wssc\Checker;
 
-class ContentSnifferChecker extends HeaderChecker {
+class ContentSnifferChecker extends HeaderChecker
+{
     
     protected $headerName = 'X-Content-Type-Options';
 

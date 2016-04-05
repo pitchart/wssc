@@ -4,7 +4,8 @@ namespace Pitchart\Wssc\Checker;
 
 use Pitchart\Wssc\Http\Response;
 
-interface Checker {
+interface Checker
+{
 
     /**
      * @param Response $response
@@ -12,5 +13,4 @@ interface Checker {
      * @return boolean
      */
     public function check(Response $response);
-
 }

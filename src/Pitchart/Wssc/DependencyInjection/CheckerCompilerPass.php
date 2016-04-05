@@ -11,7 +11,6 @@ use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationFileLoader;
 
-
 class CheckerCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)

@@ -2,7 +2,8 @@
 
 namespace Pitchart\Wssc\Http;
 
-class Response {
+class Response
+{
 
     /**
      * @var string
@@ -29,7 +30,8 @@ class Response {
      */
     private $content;
 
-    public function __construct($version, $statusCode, $statusText, $headers, $content) {
+    public function __construct($version, $statusCode, $statusText, $headers, $content)
+    {
         $this->version = $version;
         $this->statusCode = $statusCode;
         $this->$statusText = $statusText;
@@ -37,7 +39,8 @@ class Response {
         $this->content = $content;
     }
 
-    public static function fromPlainText($response) {
+    public static function fromPlainText($response)
+    {
         $response = explode(chr(10), $response);
         $response = array_map('trim', $response);
 
@@ -48,7 +51,10 @@ class Response {
 
         $separator = array_search('', $response);
         $headers = array_slice($response, 0, $separator);
-        $headers = array_map(function($item) { return  Header::fromPlainText($item);}, $headers);
+        $headers = array_map(function ($item) {
+            return  Header::fromPlainText($item);
+
+        }, $headers);
         $content = array_slice($response, $separator+1);
         return new self($matches['version'], $matches['code'], $matches['text'], $headers, implode(chr(10), $content));
     }
@@ -56,28 +62,32 @@ class Response {
     /**
      * @return string
      */
-    public function getVersion() {
+    public function getVersion()
+    {
         return $this->version;
     }
 
     /**
      * @return int
      */
-    public function getCode() {
+    public function getCode()
+    {
         return $this->statusCode;
     }
 
     /**
      * @return array
      */
-    public function getHeaders() {
+    public function getHeaders()
+    {
         return $this->headers;
     }
 
     /**
      * @return string
      */
-    public function getContent() {
+    public function getContent()
+    {
         return $this->content;
     }
 
@@ -85,7 +95,8 @@ class Response {
      * @param $name
      * @return bool
      */
-    public function hasHeader($name) {
+    public function hasHeader($name)
+    {
         return array_key_exists($name, $this->headers);
     }
 
@@ -93,7 +104,8 @@ class Response {
      * @param $name
      * @return Header
      */
-    public function getHeader($name) {
+    public function getHeader($name)
+    {
         if ($this->hasHeader($name)) {
             return $this->headers[$name];
         }
@@ -104,7 +116,8 @@ class Response {
      * @param array $headers
      * @return array
      */
-    private function parseHeaders(array $headers) {
+    private function parseHeaders(array $headers)
+    {
         $return = [];
         foreach ($headers as $header) {
             $return = array_merge($return, $this->parseHeader($header));
@@ -116,8 +129,9 @@ class Response {
      * @param $header
      * @return array
      */
-    private function parseHeader($header) {
-        if (!($header instanceOf Header)) {
+    private function parseHeader($header)
+    {
+        if (!($header instanceof Header)) {
             $header = Header::fromPlainText($header);
         }
 

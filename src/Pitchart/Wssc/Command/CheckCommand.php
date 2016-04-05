@@ -13,8 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Curl\Curl;
 use Pitchart\Wssc\Http\Response;
 
-
-class CheckCommand extends Command implements ContainerAwareInterface {
+class CheckCommand extends Command implements ContainerAwareInterface
+{
 
     /**
      * @var ContainerInterface
@@ -62,9 +62,10 @@ class CheckCommand extends Command implements ContainerAwareInterface {
             $message = $result === true ? $translator->trans('checker.result.success') : $translator->trans('checker.result.fail');
             $output->writeln(sprintf(
                 '<comment>%1$s</comment> : <%2$s>%3$s</%2$s>',
-                $translator->trans('checker.name.'.$check), $color, $message
+                $translator->trans('checker.name.'.$check),
+                $color,
+                $message
             ));
         }
     }
-
 }

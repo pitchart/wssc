@@ -5,7 +5,8 @@ namespace Pitchart\Wssc\Checker;
 use Pitchart\Wssc\Http\Response;
 use Curl\Curl;
 
-class CheckerChain {
+class CheckerChain
+{
 
     private $curlChecks = array(
         'http' => array(),
@@ -14,15 +15,18 @@ class CheckerChain {
 
     private $results = array();
 
-    public function addCurlCheck(Checker $checker, $type, $alias) {
+    public function addCurlCheck(Checker $checker, $type, $alias)
+    {
         $this->curlChecks[$type][$alias] = $checker;
     }
 
-    public function getResults() {
+    public function getResults()
+    {
         return $this->results;
     }
 
-    public function processChecks($url) {
+    public function processChecks($url)
+    {
         if (!preg_match('/^http/i', $url)) {
             $url = 'http://'.$url;
         }
@@ -49,13 +53,12 @@ class CheckerChain {
         }
     }
 
-    private function buildUrl(array $urlParts) {
+    private function buildUrl(array $urlParts)
+    {
         $auth = '';
         if (isset($urlParts['user']) && isset($urlParts['pass'])) {
             $auth = $urlParts['user'].':'.$urlParts['pass'].'@';
         }
         return sprintf('%s://%s%s%s', $urlParts['scheme'], $auth, $urlParts['host'], isset($urlParts['path']) ? $urlParts['path'] : '/');
     }
-
-
 }
