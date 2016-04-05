@@ -28,6 +28,7 @@ phpmd:
 
 phpcs:
 	vendor/bin/phpcs --standard=PSR2 --extensions=php src/
+	
 
 phpcpd:
 	vendor/bin/phpcpd src/
@@ -48,6 +49,7 @@ clean:
 
 phpcbf:
 	vendor/bin/phpcbf --standard=PSR2 --extensions=php src/
+	vendor/bin/phpcbf --standard=PSR2 --extensions=php bin/wssc
 
 .PHONY: phpbcf
 
