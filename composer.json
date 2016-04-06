@@ -9,7 +9,8 @@
         "symfony/config": "^3.0",
         "symfony/translation": "^3.0",
         "padraic/phar-updater": "^1.0",
-        "adambrett/shell-wrapper": "^0.7.0"
+        "adambrett/shell-wrapper": "^0.7.0",
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit-mock-objects": "^3.1",
