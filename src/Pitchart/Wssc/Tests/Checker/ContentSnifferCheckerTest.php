@@ -8,7 +8,7 @@ use Pitchart\Wssc\Checker\ContentSnifferChecker;
 class ContentSnifferCheckerTest extends HeaderCheckerTest
 {
     /**
-     * @var Checker
+     * @var ContentSnifferChecker
      */
     protected $checker;
 
