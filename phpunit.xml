@@ -16,4 +16,12 @@
       <directory>./src/Pitchart/Wssc/Tests/</directory>
     </testsuite>
   </testsuites>
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">./src/Pitchart/Wssc</directory>
+      <exclude>
+        <directory suffix=".php">./src/Pitchart/Wssc/Tests</directory>
+      </exclude>
+    </whitelist>
+  </filter>
 </phpunit>
