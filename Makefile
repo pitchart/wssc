@@ -29,7 +29,6 @@ phpmd:
 phpcs:
 	vendor/bin/phpcs --standard=PSR2 --extensions=php src/
 	
-
 phpcpd:
 	vendor/bin/phpcpd src/
 
@@ -38,6 +37,9 @@ phpcpd:
 ### Testing
 test:
 	vendor/bin/phpunit -v --colors --coverage-text
+
+test-report:
+	vendor/bin/phpunit -v --colors --coverage-html ./build/tests 
 
 .PHONY: test
 
