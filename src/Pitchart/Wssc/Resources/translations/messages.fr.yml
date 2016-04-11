@@ -3,7 +3,7 @@ checker:
         http_status : Le serveur redirige les appels HTTP
         https_status : Le serveur accèpte les appels HTTPS
         hsts : L'entête 'Strict-Transport-Security' est défini
-        content_sniffer : Le sniffer de contenus d'Internet Explorer est désactivé
+        content_sniffer : Le MIME sniffing est désactivé
         cookie : Les cookies de session utilisent les flags Secure et HttpOnly
         frame_embed : Le site ne peut pas être inclus en tant que frame
     result:
