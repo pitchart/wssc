@@ -1,0 +1,11 @@
+checker:
+    name:
+        http_status : The server redirects HTTP calls
+        https_status : The server accepts HTTPS calls
+        hsts : The 'Strict-Transport-Security' header is set
+        content_sniffer : Media type sniffing is disabled
+        cookie : Session cookies have the 'Secure' and 'HttpOnly' flag set
+        frame_embed : Content cannot be embedded in a frame on another website
+    result:
+        success: "\u2713"
+        fail: "\u2A2F"

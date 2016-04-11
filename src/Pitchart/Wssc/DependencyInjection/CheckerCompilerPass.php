@@ -38,7 +38,9 @@ class CheckerCompilerPass implements CompilerPassInterface
         // Building translator
         $translator = new Translator($container->getParameter('locale'), new MessageSelector());
         $translator->addLoader('yaml', new TranslationFileLoader());
+        $translator->addResource('yaml', __DIR__ . '/../Resources/translations/messages.yml', 'en');
         $translator->addResource('yaml', __DIR__ . '/../Resources/translations/messages.fr.yml', 'fr_FR');
+        $translator->setFallbackLocales(array('en'));
 
         // Adding the translator to the service container
         $translatorDefinition = new Definition();
