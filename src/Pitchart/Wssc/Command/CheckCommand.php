@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Console\Helper\Table;
 use Curl\Curl;
 use Pitchart\Wssc\Http\Response;
 
@@ -56,16 +57,22 @@ class CheckCommand extends Command implements ContainerAwareInterface
 
         $translator = $this->container->get('translator');
 
-
+        $results = array();
         foreach ($checkerChain->getResults() as $check => $result) {
             $color = $result === true ? 'info' : 'error';
             $message = $result === true ? $translator->trans('checker.result.success') : $translator->trans('checker.result.fail');
-            $output->writeln(sprintf(
-                '<comment>%1$s</comment> : <%2$s>%3$s</%2$s>',
-                $translator->trans('checker.name.'.$check),
-                $color,
-                $message
-            ));
+            $results[] = array(
+                sprintf('<comment>%s</comment>', $translator->trans('checker.name.'.$check)),
+                sprintf('<%1$s>%2$s</%1$s>', $color, $message)
+            );
         }
+        $output->writeln('Testing HTTP configuration for '.$url);
+        $table = new Table($output);
+        $table
+            ->setHeaders(array('Test', 'Result'))
+            ->setRows($results)
+        ;
+        $table->render();
+
     }
 }
